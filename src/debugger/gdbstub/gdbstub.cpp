@@ -483,7 +483,7 @@ uint32_t DebugVirtualToPhysical(uint32_t address)
     struct r4300_core* r4300 = &dev->r4300;
 
     if ((address & UINT32_C(0xc0000000)) != UINT32_C(0x80000000)) {
-        address = virtual_to_physical_address(r4300, address, 0);
+        address = virtual_to_physical_address_no_tlb_refill_exception(r4300, address, 0);
         if (address == 0) {
             return 0;
         }
